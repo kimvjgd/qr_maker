@@ -5,6 +5,7 @@ import 'package:qrcode_maker/add_qr_screen.dart';
 import 'package:qrcode_maker/edit_qr_screen.dart';
 import 'package:qrcode_maker/model/qr.dart';
 import 'package:qrcode_maker/qr_screen.dart';
+import 'package:qrcode_maker/setting_screen.dart';
 
 class QrStorageScreen extends StatefulWidget {
   const QrStorageScreen({Key? key}) : super(key: key);
@@ -28,9 +29,16 @@ class _QrStorageScreenState extends State<QrStorageScreen> {
   Widget build(BuildContext context) {
     print('@@build');
     return Scaffold(
-      appBar: PreferredSize(
-        child: AppBar(),
-        preferredSize: Size.fromHeight(0),
+      appBar: AppBar(
+        actions: [IconButton(
+            icon: Icon(
+              Icons.settings,
+              color: Colors.grey,
+            ),
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => SettingScreen()));
+          },)],
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(
@@ -47,9 +55,9 @@ class _QrStorageScreenState extends State<QrStorageScreen> {
       body: ListView.builder(
         itemBuilder: (ctx, idx) {
           if (idx == 0) {
-            return Container(
-              child: Text(
-                'Qr 제목',
+            return ListTile(
+              title: Text(
+                'My QRs',
                 style: TextStyle(fontSize: 50),
               ),
             );
@@ -70,6 +78,7 @@ class _QrStorageScreenState extends State<QrStorageScreen> {
 
                       return InkWell(
                         onTap: () {
+                          print(_qr.url);
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (_) =>
                                   QrScreen(name: _qr.name, url: _qr.url)));
@@ -79,9 +88,9 @@ class _QrStorageScreenState extends State<QrStorageScreen> {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8.0),
                           child: ListTile(
-                            tileColor: Colors.blue,
+                            tileColor: Colors.deepPurple,
                             title: Text(
-                              _qr.url,
+                              ('${_qr.name}'),
                               style: TextStyle(fontSize: 20),
                             ),
                             trailing: Container(
@@ -91,15 +100,13 @@ class _QrStorageScreenState extends State<QrStorageScreen> {
                                   IconButton(
                                       iconSize: 25,
                                       onPressed: () {
-                                        Navigator.of(context)
-                                            .push(MaterialPageRoute(
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
                                                 builder: (_) => EditQrScreen(
-                                                      qr: Qr(
-                                                          name: _qr.name,
-                                                          url: _qr.url),
-                                                      qr_key: _qr.key
-
-                                                    )));
+                                                    qr: Qr(
+                                                        name: _qr.name,
+                                                        url: _qr.url),
+                                                    qr_key: _qr.key)));
                                       },
                                       icon: Icon(Icons.edit)),
                                   IconButton(

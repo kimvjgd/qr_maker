@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:qrcode_maker/qr_storage_screen.dart';
 
 class QrScreen extends StatelessWidget {
   final String name;
@@ -13,15 +12,7 @@ class QrScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          TextButton(
-            child: Text("저장", style: TextStyle(color: Colors.white),),
-            onPressed: () {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx)=>QrStorageScreen()));
-            },
-          )
-
-        ],
+        title: Text(''),
       ),
       body: Center(
         child: Column(

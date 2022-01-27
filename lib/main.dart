@@ -14,7 +14,11 @@ void main() async {
   await SystemChrome.setPreferredOrientations(
     [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]
   );
-  runApp(MyApp());}
+  runApp(MaterialApp(
+      themeMode: ThemeMode.dark,
+      darkTheme: ThemeData.dark(),
+      debugShowCheckedModeBanner: false,
+      home: QrStorageScreen()));}
 
   Future<void> _initHive() async {
   await Hive.initFlutter();
@@ -22,21 +26,22 @@ void main() async {
   await Hive.openBox<Qr>('qrFormBox');
   }
 
-class MyApp extends StatefulWidget {
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      themeMode: ThemeMode.dark,
-      darkTheme: ThemeData.dark(),
-      debugShowCheckedModeBanner: false,
-      home: QrStorageScreen(),
-    );
-  }
-}
+// class MyApp extends StatefulWidget {
+//   @override
+//   State<MyApp> createState() => _MyAppState();
+// }
+//
+// class _MyAppState extends State<MyApp> {
+//
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     // return MaterialApp(
+//     //   themeMode: ThemeMode.dark,
+//     //   darkTheme: ThemeData.dark(),
+//     //   debugShowCheckedModeBanner: false,
+//     //   home: QrStorageScreen(),
+//     // );
+//     return QrStorageScreen();
+//   }
+// }
