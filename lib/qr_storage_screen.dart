@@ -30,15 +30,18 @@ class _QrStorageScreenState extends State<QrStorageScreen> {
     print('@@build');
     return Scaffold(
       appBar: AppBar(
-        actions: [IconButton(
+        actions: [
+          IconButton(
             icon: Icon(
               Icons.settings,
               color: Colors.grey,
             ),
-          onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => SettingScreen()));
-          },)],
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => SettingScreen()));
+            },
+          )
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(
@@ -88,7 +91,8 @@ class _QrStorageScreenState extends State<QrStorageScreen> {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8.0),
                           child: ListTile(
-                            tileColor: Colors.deepPurple,
+                            tileColor: Colors.white70,
+                            // red[300], blue[300], black26, white70
                             title: Text(
                               ('${_qr.name}'),
                               style: TextStyle(fontSize: 20),
