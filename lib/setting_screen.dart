@@ -12,13 +12,12 @@ class SettingScreen extends StatefulWidget {
 bool isDarkMode = false;
 
 class _SettingScreenState extends State<SettingScreen> {
-
   late Box _darkMode;
 
   @override
   void initState() {
     _darkMode = Hive.box('darkModeBox');
-    isDarkMode = _darkMode.get('darkMode', defaultValue: false);
+    isDarkMode = _darkMode.get('darkMode', defaultValue: true);
     super.initState();
   }
 
@@ -26,7 +25,9 @@ class _SettingScreenState extends State<SettingScreen> {
   Widget build(BuildContext context) {
     Size _size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(title: Text('App Setting'),),
+      appBar: AppBar(
+        title: Text('App Setting'),
+      ),
       body: ListView(
         children: [
           Divider(),
@@ -38,11 +39,14 @@ class _SettingScreenState extends State<SettingScreen> {
             ),
             mode: Mode.MENU,
             showSelectedItems: true,
-            items: ["Light", "Dark"],
-            onChanged: print,
-            selectedItem: "Light",
+            items: ["Dark", "Light"],
+            onChanged: clickedAppMode,
+            // onChanged: print,
+            selectedItem: isDarkMode==true?'Dark':'Light',
           ),
-          Divider(height: _size.height/15,),
+          Divider(
+            height: _size.height / 15,
+          ),
           DropdownSearch<String>(
             dropdownSearchDecoration: InputDecoration(
               labelText: "Box Color",
@@ -51,11 +55,13 @@ class _SettingScreenState extends State<SettingScreen> {
             ),
             mode: Mode.MENU,
             showSelectedItems: true,
-            items: ["Red", "Blue", "Green","White"],
+            items: ["Red", "Blue", "Green", "White"],
             onChanged: print,
             selectedItem: "Red",
           ),
-          Divider(height: _size.height/15,),
+          Divider(
+            height: _size.height / 15,
+          ),
           DropdownSearch(
             dropdownSearchDecoration: InputDecoration(
               labelText: "Text Color",
@@ -64,7 +70,7 @@ class _SettingScreenState extends State<SettingScreen> {
             ),
             mode: Mode.MENU,
             showSelectedItems: true,
-            items: ["Black","White"],
+            items: ["Black", "White"],
             onChanged: print,
             selectedItem: "Red",
           ),
@@ -73,7 +79,15 @@ class _SettingScreenState extends State<SettingScreen> {
     );
   }
 
-   void clickedAppMode() {
+  void clickedAppMode(string) {
+    setState(() {
+      isDarkMode = string=='Dark'?true:false;
+      if (string == 'Dark') {
+        _darkMode.put('darkMode', true);
+      }else{
+        _darkMode.put('darkMode', false);
+      }
+    });
     print;
   }
 }

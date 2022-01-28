@@ -58,17 +58,6 @@ class _QrStorageScreenState extends State<QrStorageScreen> {
       body: ListView.builder(
         itemBuilder: (ctx, idx) {
           if (idx == 0) {
-            return ListTile(
-              title: Text(
-                'My QRs',
-                style: TextStyle(fontSize: 50),
-              ),
-            );
-          } else if (idx == 1) {
-            // WidgetsBinding.instance!.addPostFrameCallback((_) {
-            //   getAllQr();
-            //   print('@@실행!!!');
-            // });
             return ValueListenableBuilder(
               builder: (context, Box<Qr> qrFormBox, widget) {
                 final qrs = qrFormBox.values.toList();
@@ -76,8 +65,6 @@ class _QrStorageScreenState extends State<QrStorageScreen> {
                   child: Column(
                     children: List.generate(qrs.length, (index) {
                       Qr _qr = qrs[index];
-                      // print(_qr.key);
-                      // Qr qrForm = qrs[idx];
 
                       return InkWell(
                         onTap: () {
@@ -85,14 +72,19 @@ class _QrStorageScreenState extends State<QrStorageScreen> {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (_) =>
                                   QrScreen(name: _qr.name, url: _qr.url)));
-                          // print('@@inkwell');
-                          // print("${_qr.name} ${_qr.url} ${_qr.id}");
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8.0),
                           child: ListTile(
                             tileColor: Colors.white70,
                             // red[300], blue[300], black26, white70
+                            // Color(0xFF80d3f4),
+                            // Color(0xFFa794fa),
+                            // Color(0xFFfb91d1),
+                            // Color(0xFFfb8a94),
+                            // Color(0xFFfebd9a),
+                            // Color(0xFF51e29d),
+                            // Color(0xFFFFFFFF),
                             title: Text(
                               ('${_qr.name}'),
                               style: TextStyle(fontSize: 20),
