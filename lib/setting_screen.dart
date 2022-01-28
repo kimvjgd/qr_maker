@@ -16,7 +16,24 @@ AppColor isAppColor = AppColor(box_color: 0xFF80d3f4, text_color: 0xFF80d3f4);
 class _SettingScreenState extends State<SettingScreen> {
   late Box _darkMode;
   late Box<AppColor> _appColorBox;
-
+  // List<Color> colors1 = [
+  //   Color(0xFF80d3f4),      // Aguamarine
+  //   Color(0xFFa794fa),      // Lavanda
+  //   Color(0xFFfb91d1),      // Rosado
+  //   Color(0xFFfb8a94),      // Coral
+  //   Color(0xFFfebd9a),      // Salmon
+  //   Color(0xFF51e29d),      // Verde
+  //   Color(0xFFFFFFFF),      // White
+  // ];
+  List<int> colors = [
+    0xFF80d3f4,
+    0xFFa794fa,
+    0xFFfb91d1,
+    0xFFfb8a94,
+    0xFFfebd9a,
+    0xFF51e29d,
+    0xFFFFFFFF
+  ];
 
   @override
   void initState() {
@@ -60,7 +77,7 @@ class _SettingScreenState extends State<SettingScreen> {
             ),
             mode: Mode.MENU,
             showSelectedItems: true,
-            items: ["Red", "Blue", "Green", "White"],
+            items: ["Aguamarine", "Lavanda", "Rosado", "Coral", "Salmon", "Verde"],
             onChanged: changeBoxColor,
             selectedItem: boxColor(),
           ),
@@ -98,19 +115,25 @@ class _SettingScreenState extends State<SettingScreen> {
   }
   void changeBoxColor(string) {
     setState(() {
-      if(string == 'Red'){
-        isAppColor.box_color = 0xFF80d3f4;
-        _appColorBox.put('appColor', AppColor(box_color: 0xFF80d3f4, text_color: isAppColor.text_color));
+      if(string == 'Aguamarine'){
+        isAppColor.box_color = colors[0];
+        _appColorBox.put('appColor', AppColor(box_color: colors[0], text_color: isAppColor.text_color));
         // isAppColor.box_color =
-      }else if(string=='Blue'){
-        _appColorBox.put('appColor', AppColor(box_color: 0xFFa794fa, text_color: isAppColor.text_color));
-        isAppColor.box_color = 0xFFa794fa;
-      }else if(string=='Green'){
-        _appColorBox.put('appColor', AppColor(box_color: 0xFFfb91d1, text_color: isAppColor.text_color));
-        isAppColor.box_color = 0xFFfb91d1;
+      }else if(string=='Lavanda'){
+        _appColorBox.put('appColor', AppColor(box_color: colors[1], text_color: isAppColor.text_color));
+        isAppColor.box_color = colors[1];
+      }else if(string=='Rosado'){
+        _appColorBox.put('appColor', AppColor(box_color: colors[2], text_color: isAppColor.text_color));
+        isAppColor.box_color = colors[2];
+      }else if(string=='Coral'){
+        _appColorBox.put('appColor', AppColor(box_color: colors[3], text_color: isAppColor.text_color));
+        isAppColor.box_color = colors[3];
+      }else if(string=='Salmon'){
+        _appColorBox.put('appColor', AppColor(box_color: colors[4], text_color: isAppColor.text_color));
+        isAppColor.box_color = colors[4];
       }else{
-        _appColorBox.put('appColor', AppColor(box_color: 0xFFfb8a94, text_color: isAppColor.text_color));
-        isAppColor.box_color = 0xFFfb8a94;
+        _appColorBox.put('appColor', AppColor(box_color: colors[5], text_color: isAppColor.text_color));
+        isAppColor.box_color = colors[5];
       }
     });
     print;
@@ -130,14 +153,18 @@ class _SettingScreenState extends State<SettingScreen> {
   }
 
   String boxColor(){
-    if(isAppColor.box_color == 0xFF80d3f4){
-      return 'Red';
-    }else if (isAppColor.box_color == 0xFFa794fa){
-      return 'Blue';
-    }else if (isAppColor.box_color == 0xFFfb91d1){
-      return 'Green';
-    }else {
-      return 'White';
+    if(isAppColor.box_color == colors[0]){
+      return 'Aguamarine';
+    }else if (isAppColor.box_color == colors[1]){
+      return 'Lavanda';
+    }else if (isAppColor.box_color == colors[2]){
+      return 'Rosado';
+    }else if (isAppColor.box_color == colors[3]){
+      return 'Coral';
+    }else if (isAppColor.box_color == colors[4]){
+      return 'Salmon';
+    }else{
+      return 'Verde';
     }
   }
   String textColor(){

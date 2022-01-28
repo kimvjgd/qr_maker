@@ -47,6 +47,9 @@ class _EditQrScreenState extends State<EditQrScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
+        leading: IconButton(icon: Icon(Icons.arrow_back_outlined),onPressed: (){
+          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=>QrStorageScreen()));
+        },),
         title: Text(
           'Add QrCode',
           style: TextStyle(fontFamily: 'DonghyunKo'),

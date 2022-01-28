@@ -52,7 +52,7 @@ class _QrStorageScreenState extends State<QrStorageScreen> {
           color: Colors.white,
         ),
         onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(
+          Navigator.of(context).pushReplacement(MaterialPageRoute(
               builder: (context) => AddQrScreen(
                     qr: Qr(name: '', url: ''),
                   )));
@@ -101,7 +101,7 @@ class _QrStorageScreenState extends State<QrStorageScreen> {
                                       IconButton(
                                           iconSize: 25,
                                           onPressed: () {
-                                            Navigator.of(context).push(
+                                            Navigator.of(context).pushReplacement(
                                                 MaterialPageRoute(
                                                     builder: (_) => EditQrScreen(
                                                         qr: Qr(
@@ -137,7 +137,7 @@ class _QrStorageScreenState extends State<QrStorageScreen> {
           }
           return Container();
         },
-        itemCount: 2,
+        itemCount: 1,
       ),
       // body: Container(),
     );
