@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter/services.dart';
+import 'package:qrcode_maker/model/app_color.dart';
 import 'package:qrcode_maker/model/qr.dart';
 import 'package:qrcode_maker/qr_storage_screen.dart';
 
@@ -18,8 +19,10 @@ void main() async {
   Future<void> _initHive() async {
   await Hive.initFlutter();
   Hive.registerAdapter(QrAdapter());
+  Hive.registerAdapter(AppColorAdapter());
   await Hive.openBox('darkModeBox');
   await Hive.openBox<Qr>('qrFormBox');
+  await Hive.openBox<AppColor>('appColorBox');
   }
 
 class MyApp extends StatefulWidget {
